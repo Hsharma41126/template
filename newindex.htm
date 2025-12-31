@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Year Greetings - Saraswat Brahman Samaj</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0a1f2e;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .greeting-card {
+            width: 210mm;
+            min-height: 297mm;
+            background: linear-gradient(145deg, #0a2d3e 0%, #102a40 30%, #1a3650 50%, #102a40 70%, #0a2d3e 100%);
+            border: 15px solid;
+            border-image: linear-gradient(45deg, #d4af37, #c19a6b, #d4af37) 1;
+            border-radius: 15px;
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+            color: #f5f5f5;
+        }
+
+        .new-year-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 10%, rgba(212, 175, 55, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 50% 90%, rgba(193, 154, 107, 0.05) 0%, transparent 20%);
+            z-index: 0;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header Section */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(212, 175, 55, 0.5);
+            margin-bottom: 20px;
+        }
+
+        .org-logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid #d4af37;
+            overflow: hidden;
+        }
+
+        .org-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .org-info {
+            text-align: center;
+            flex-grow: 1;
+            padding: 0 20px;
+        }
+
+        .org-name {
+            color: #d4af37;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        }
+
+        .org-details {
+            color: #c9c9c9;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .author-info {
+            text-align: center;
+            width: 100px;
+        }
+
+        .author-photo {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            border: 2px solid #d4af37;
+            overflow: hidden;
+            margin: 0 auto 5px;
+        }
+
+        .author-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .author-name {
+            font-size: 11px;
+            color: #c9c9c9;
+        }
+
+        /* Main Title */
+        .main-title {
+            text-align: center;
+            margin: 20px 0;
+            padding: 10px;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
+            border-radius: 8px;
+        }
+
+        .title-text {
+            color: #ffffff;
+            font-size: 26px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            color: #d4af37;
+            font-size: 18px;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        /* Leadership Section */
+        .leadership-section {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            align-items: flex-start;
+        }
+
+        .president-box,
+        .coordinator-box {
+            width: 200px;
+            height: 370px;
+            text-align: center;
+            padding: 10px;
+            border-radius: 10px;
+            background: rgba(26, 54, 80, 0.7);
+            border: 2px solid rgba(212, 175, 55, 0.5);
+        }
+
+        .leadership-photo {
+            width: 180px;
+            height: 270px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 0 auto 10px;
+            border: 3px solid #d4af37;
+        }
+
+        .leadership-photo img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+        }
+
+        .leadership-title {
+            color: #d4af37;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .leadership-role {
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 600;
+            background-color: rgba(212, 175, 55, 0.2);
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        /* Members Grid */
+        .members-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 7px;
+            margin-bottom: 20px;
+            margin-top: 10px;
+        }
+
+        .member-card {
+            width: 150px;
+            text-align: center;
+            padding: 10px;
+            border-radius: 10px;
+            background: rgba(26, 54, 80, 0.6);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .member-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .member-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 8px;
+            border: 2px solid #d4af37;
+        }
+
+        .member-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .member-name {
+            color: #ffffff;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            line-height: 1.2;
+        }
+
+        .member-role {
+            color: #d4af37;
+            font-size: 11px;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
+        /* New Year Greeting */
+        .new-year-greeting {
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.15), transparent);
+            border-radius: 10px;
+            border-top: 2px solid rgba(212, 175, 55, 0.5);
+            border-bottom: 2px solid rgba(212, 175, 55, 0.5);
+        }
+
+        .greeting-title {
+            color: #d4af37;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        }
+
+        .greeting-text {
+            color: #ffffff;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .new-year-number {
+            font-size: 32px;
+            font-weight: 800;
+            color: #ffd700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+            margin: 10px 0;
+        }
+
+        /* Decorative Elements */
+        .decoration-star {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: #ffd700;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: twinkle 2s infinite alternate;
+            z-index: 0;
+        }
+
+        @keyframes twinkle {
+            0% {
+                opacity: 0.4;
+                transform: scale(0.9);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1.1);
+            }
+        }
+
+        .golden-sparkle {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background-color: #ffd700;
+            border-radius: 50%;
+            animation: sparkle 1.5s infinite;
+        }
+
+        @keyframes sparkle {
+            0% {
+                opacity: 0;
+                transform: translateY(0);
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+        }
+
+        .new-year-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #d4af37 30%, #c19a6b 70%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 18px;
+            color: #0a2d3e;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.7);
+            z-index: 2;
+        }
+
+        /* Page indicator */
+        .page-number {
+            position: absolute;
+            bottom: 15px;
+            right: 20px;
+            color: rgba(212, 175, 55, 0.7);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Responsive adjustments for printing */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .greeting-card {
+                box-shadow: none;
+                margin: 0;
+                page-break-after: always;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Page 1 -->
+    <div class="greeting-card">
+        <div class="new-year-overlay"></div>
+
+        <!-- Decorative elements -->
+        <div class="decoration-star" style="top: 8%; left: 10%;"></div>
+        <div class="decoration-star" style="top: 5%; left: 30%;"></div>
+        <div class="decoration-star" style="top: 12%; right: 15%;"></div>
+        <div class="golden-sparkle" style="top: 15%; left: 20%; animation-delay: 0.3s;"></div>
+        <div class="golden-sparkle" style="top: 10%; right: 25%; animation-delay: 0.7s;"></div>
+
+        <div class="content-wrapper">
+            <!-- Header -->
+            <div class="header">
+                <div class="org-logo">
+                    <img src="./Gwalior (1).png" alt="Logo">
+                </div>
+
+                <div class="org-info">
+                    <div class="org-name">सारस्वत ब्राह्मण समाज युवा संगठन ग्वालियर ( म.प्र.)</div>
+                    <div class="org-details">
+                        कार्यालय (मोब :- 9977372417)<br>
+                        शील नगर मकान नंबर 5313 बहोड़ापुर, ग्वालियर
+                    </div>
+                </div>
+
+                <div class="author-info">
+                    <div class="author-photo">
+                        <img src="./ganeshji.jpg" alt="Ganeshji">
+                    </div>
+                    <div class="author-name">हिमांशु सारस्वत (लेखक)</div>
+                </div>
+            </div>
+
+            <!-- Main Title -->
+            <div class="main-title">
+                <div class="title-text">कार्यकारिणी सत्र 2025-26</div>
+                <div class="subtitle">वरिष्ठ सलाहकार</div>
+            </div>
+
+            <!-- Leadership Section -->
+            <div class="leadership-section">
+                <div class="president-box">
+                    <div class="leadership-photo">
+                        <img src="./Radha Radha.jpeg" alt="President">
+                    </div>
+                    <div class="leadership-title">🙏 बांके बिहारी जी 🙏</div>
+                    <div class="leadership-role">अध्यक्ष</div>
+                </div>
+
+                <div style="flex-grow: 1; margin: 0 2px;">
+                    <!-- Senior Advisors -->
+                    <div class="members-container">
+                        <div class="member-card">
+                            <div class="member-photo">
+                                <img src="./Haridatt.jpg" alt="Haridatt">
+                            </div>
+                            <div class="member-name">श्री हरिदत्त जी सारस्वत</div>
+                            <div class="member-role">वरिष्ठ सलाहकार</div>
+                        </div>
+
+                        <div class="member-card">
+                            <div class="member-photo">
+                                <img src="./Screenshot_20240102_222426.jpg" alt="Matadin">
+                            </div>
+                            <div class="member-name">श्री मातादीन जी सारस्वत</div>
+                            <div class="member-role">वरिष्ठ सलाहकार</div>
+                        </div>
+
+                        <div class="member-card">
+                            <div class="member-photo">
+                                <img src="./om-prakash.jpg" alt="Om Prakash">
+                            </div>
+                            <div class="member-name">श्री ओमप्रकाश जी सारस्वत</div>
+                            <div class="member-role">वरिष्ठ सलाहकार</div>
+                        </div>
+
+                        <div class="member-card">
+                            <div class="member-photo">
+                                <img src="./IMG-20240102-WA0231.jpg" alt="Gopal">
+                            </div>
+                            <div class="member-name">श्री गोपाल जी सारस्वत</div>
+                            <div class="member-role">वरिष्ठ सलाहकार</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="coordinator-box">
+                    <div class="leadership-photo">
+                        <img src="./Kaila Devi Temple, Karauli, Rajasthan - Info, Timings, Photos, History.jpeg"
+                            alt="Coordinator">
+                    </div>
+                    <div class="leadership-title">🙏 जय माँ कैला देवी 🙏</div>
+                    <div class="leadership-role">संयोजक</div>
+                </div>
+            </div>
+            <div>
+                <div class="members-container">
+                    <div class="member-card">
+                        <div class="member-photo">
+                            <img src="./IMG-20240102-WA0243.jpg" alt="Janardan">
+                        </div>
+                        <div class="member-name">श्री जनार्दन जी सारस्वत</div>
+                        <div class="member-role">वरिष्ठ सलाहकार</div>
+                    </div>
+
+                    <div class="member-card">
+                        <div class="member-photo">
+                            <img src="./IMG-20240102-WA0234.jpg" alt="Naresh">
+                        </div>
+                        <div class="member-name">श्री नरेश जी सारस्वत</div>
+                        <div class="member-role">वरिष्ठ सलाहकार</div>
+                    </div>
+
+                    <div class="member-card">
+                        <div class="member-photo">
+                            <img src="./IMG_20240106_114215.jpg" alt="Chakrapani">
+                        </div>
+                        <div class="member-name">श्री चक्रपाणि जी सारस्वत</div>
+                        <div class="member-role">वरिष्ठ सलाहकार</div>
+                    </div>
+
+                    <div class="member-card">
+                        <div class="member-photo">
+                            <img src="./photo1.jpeg" alt="P.K.">
+                        </div>
+                        <div class="member-name">श्री पी. के. जी सारस्वत</div>
+                        <div class="member-role">वरिष्ठ सलाहकार</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Patrons Section -->
+            <div class="main-title" style="margin: 10px 0;">
+                <div class="subtitle">संरक्षक</div>
+            </div>
+
+            <div class="members-container">
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./IMG_20240106_205001.jpg" alt="Laxminaresh">
+                    </div>
+                    <div class="member-name">श्री लक्ष्मीनरेश जी सारस्वत</div>
+                    <div class="member-role">संरक्षक</div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./IMG_20240102_225109.jpg" alt="Ram Mohan">
+                    </div>
+                    <div class="member-name">श्री राममोहन जी सारस्वत</div>
+                    <div class="member-role">संरक्षक</div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./FB_IMG_1704560878792.jpg" alt="Kishor">
+                    </div>
+                    <div class="member-name">श्री किशोर जी सारस्वत</div>
+                    <div class="member-role">संरक्षक</div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./IMG-20240102-WA0233.jpg" alt="Dwarka Prasad">
+                    </div>
+                    <div class="member-name">श्री द्वारका प्रसाद जी सारस्वत</div>
+                    <div class="member-role">संरक्षक</div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./ashokji.jpeg" alt="Ashok">
+                    </div>
+                    <div class="member-name">श्री अशोक जी सारस्वत</div>
+                    <div class="member-role">संरक्षक</div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./omPrakashji.jpg" alt="Om Prakash">
+                    </div>
+                    <div class="member-name">श्री ओमप्रकाश जी सारस्वत</div>
+                    <div class="member-role">संरक्षक</div>
+                </div>
+            </div>
+
+            <!-- Executive Committee -->
+            <div class="main-title" style="margin: 20px 0 10px;">
+                <div class="subtitle">कार्यकारिणी समिति</div>
+            </div>
+
+            <div class="members-container">
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./IMG_20240106_204508.jpg" alt="Hariom">
+                    </div>
+                    <div class="member-name">श्री हरिओम जी सारस्वत</div>
+                    <div class="member-role">कार्य अध्यक्ष</div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./IMG-20240102-WA0171.jpg" alt="Sanket">
+                    </div>
+                    <div class="member-name">श्री संकेत जी सारस्वत</div>
+                    <div class="member-role">मीडिया प्रभारी</div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./IMG_20240106_114928.jpg" alt="Bhupendra">
+                    </div>
+                    <div class="member-name">श्री भूपेंद्र जी सारस्वत</div>
+                    <div class="member-role">सहायक मीडिया प्रभारी</div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./dharmedraji.jpg" alt="Dharmendra">
+                    </div>
+                    <div class="member-name">श्री धर्मेन्द्र जी सारस्वत</div>
+                    <div class="member-role">कार्य उपाध्यक्ष</div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./santosh ji.jpg" alt="Santosh">
+                    </div>
+                    <div class="member-name">श्री संतोष जी सारस्वत</div>
+                    <div class="member-role">प्रवक्ता</div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./IMG-20240102-WA0156.jpg" alt="Manoj">
+                    </div>
+                    <div class="member-name">श्री मनोज जी सारस्वत</div>
+                    <div class="member-role">प्रवक्ता</div>
+                </div>
+            </div>
+
+            <!-- New Year Greeting -->
+            <div class="new-year-greeting">
+                <div class="greeting-title">✨ नववर्ष 2026 की हार्दिक शुभकामनाएँ ✨</div>
+                <div class="greeting-text">
+                    श्री सारस्वत ब्राह्मण समाज युवा संगठन, ग्वालियर की ओर से समस्त समाज बंधुओं को
+                </div>
+                <div class="new-year-number">2026</div>
+                <div class="greeting-text">
+                    यह नववर्ष आपके जीवन में ज्ञान, सद्बुद्धि, सुख और समृद्धि लेकर आए<br>
+                    आइए, हम सभी मिलकर नए उत्साह, नए संकल्पों और उज्ज्वल भविष्य के साथ नववर्ष 2026 का स्वागत करें
+                </div>
+            </div>
+
+            <div class="page-number">पृष्ठ 1</div>
+        </div>
+    </div>
+
+    <!-- Page 2 -->
+    <div class="greeting-card">
+        <div class="new-year-overlay"></div>
+
+        <!-- Decorative elements -->
+        <div class="decoration-star" style="top: 10%; left: 15%;"></div>
+        <div class="decoration-star" style="top: 7%; right: 20%;"></div>
+        <div class="golden-sparkle" style="top: 12%; left: 30%; animation-delay: 0.5s;"></div>
+        <div class="golden-sparkle" style="top: 8%; right: 10%; animation-delay: 0.9s;"></div>
+
+
+        <div class="content-wrapper">
+            <!-- Header -->
+            <div class="header">
+                <div class="org-logo">
+                    <img src="./Gwalior (1).png" alt="Logo">
+                </div>
+
+                <div class="org-info">
+                    <div class="org-name">सारस्वत ब्राह्मण समाज युवा संगठन ग्वालियर ( म.प्र.)</div>
+                    <div class="org-details">
+                        कार्यालय (मोब :- 9977372417)<br>
+                        शील नगर मकान नंबर 5313 बहोड़ापुर, ग्वालियर
+                    </div>
+                </div>
+
+                <div class="author-info">
+                    <div class="author-photo">
+                        <img src="./ganeshji.jpg" alt="Ganeshji">
+                    </div>
+                    <div class="author-name">हिमांशु सारस्वत (लेखक)</div>
+                </div>
+            </div>
+
+            <!-- Main Title -->
+            <div class="main-title">
+                <div class="title-text">कार्यकारिणी सत्र 2025-26</div>
+                <div class="subtitle">समिति सदस्य</div>
+            </div>
+
+            <!-- Members Grid -->
+            <div class="members-container" style="margin-top: 20px;">
+                <!-- Row 1 -->
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./piyush.jpg" alt="Piyush">
+                    </div>
+                    <div class="member-name">श्री पीयूष जी सारस्वत</div>
+                    <div class="member-role">कोषाध्यक्ष</div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./keshavji.jpg" alt="Keshav">
+                    </div>
+                    <div class="member-name">श्री केशव जी सारस्वत</div>
+                    <div class="member-role">संगठन प्रभारी</div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./bhagwaanji.jpg" alt="Bhagwan">
+                    </div>
+                    <div class="member-name">श्री श्रीभगवान् जी सारस्वत</div>
+                    <div class="member-role">कोष उपाध्यक्ष</div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./kuldip.jpg" alt="Kuldeep">
+                    </div>
+                    <div class="member-name">श्री कुलदीप जी सारस्वत</div>
+                    <div class="member-role">सचिव</div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./vishnu.jpg" alt="Vishnu">
+                    </div>
+                    <div class="member-name">श्री विष्णुकांत जी सारस्वत</div>
+                    <div class="member-role">मंच संचालन पदाधिकारी, सह0 सचिव</div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./ashishji.jpg" alt="Ashish">
+                    </div>
+                    <div class="member-name">श्री आशीष जी सारस्वत</div>
+                    <div class="member-role">योजना प्रभारी</div>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./dinesh.jpg" alt="Dinesh">
+                    </div>
+                    <div class="member-name">श्री दिनेश जी सारस्वत</div>
+                    <div class="member-role">चयन समिति प्रभारी</div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./rajeshji.jpg" alt="Rajesh">
+                    </div>
+                    <div class="member-name">श्री राजेश जी सारस्वत</div>
+                    <div class="member-role">चयन समिति प्रभारी</div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./yogeshji.jpeg" alt="Yogesh">
+                    </div>
+                    <div class="member-name">श्री योगेश जी सारस्वत</div>
+                    <div class="member-role">क्षेत्र अधिकारी</div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./dadaji.jpg" alt="Brahm Anand">
+                    </div>
+                    <div class="member-name">श्री ब्रह्मानंद जी सारस्वत</div>
+                    <div class="member-role">व्यवस्था प्रभारी</div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./pramodji.jpeg" alt="Pramod">
+                    </div>
+                    <div class="member-name">श्री प्रमोद जी सारस्वत</div>
+                    <div class="member-role">क्षेत्र अधिकारी</div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./raghunandanji.jpeg" alt="Raghunandan">
+                    </div>
+                    <div class="member-name">श्री रघुनंदन जी सारस्वत</div>
+                    <div class="member-role">व्यवस्थापक</div>
+                </div>
+
+                <!-- Row 3 -->
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./rameshji.jpeg" alt="Ramesh">
+                    </div>
+                    <div class="member-name">श्री रमेश जी सारस्वत</div>
+                    <div class="member-role">क्षेत्र अधिकारी</div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./omprakashji.jpeg" alt="O.P.">
+                    </div>
+                    <div class="member-name">श्री ओ.पी. जी सारस्वत</div>
+                    <div class="member-role">क्षेत्र अधिकारी</div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./ripsudhanji.jpeg" alt="Ripusudhan">
+                    </div>
+                    <div class="member-name">श्री रिपुसूदन जी सारस्वत</div>
+                    <div class="member-role">क्षेत्र अधिकारी</div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./shreelaxminarayanji.jpeg" alt="Laxmi Narayan">
+                    </div>
+                    <div class="member-name">श्री लक्ष्मी नारायण जी सारस्वत</div>
+                    <div class="member-role">क्षेत्र अधिकारी</div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./riteshji.jpeg" alt="Ritesh">
+                    </div>
+                    <div class="member-name">श्री रितेश जी सारस्वत</div>
+                    <div class="member-role">क्षेत्र अधिकारी</div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./JPMAMA.jpg" alt="Jay Prakash">
+                    </div>
+                    <div class="member-name">श्री जयप्रकाश जी सारस्वत</div>
+                    <div class="member-role">क्षेत्र अधिकारी</div>
+                </div>
+
+                <!-- Row 4 -->
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./lokeshji.jpg" alt="Lokesh">
+                    </div>
+                    <div class="member-name">श्री लोकेश जी सारस्वत</div>
+                    <div class="member-role">सांस्कृतिक प्रभारी</div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./rameshwarji.jpeg" alt="Rameshwar">
+                    </div>
+                    <div class="member-name">श्री रामेश्वर जी सारस्वत</div>
+                    <div class="member-role">व्यवस्थापक</div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./rakeshji.jpeg" alt="Rakesh">
+                    </div>
+                    <div class="member-name">श्री राकेश जी सारस्वत</div>
+                    <div class="member-role">चयन समिति प्रभारी</div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./manishji.jpg" alt="Manish">
+                    </div>
+                    <div class="member-name">श्री मनीष जी सारस्वत</div>
+                    <div class="member-role">चयन समिति प्रभारी</div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./himanshu.jpg" alt="Himanshu">
+                    </div>
+                    <div class="member-name">श्री हिमांशु जी सारस्वत</div>
+                    <div class="member-role">लेखक | सहायक योजना प्रभारी</div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./sonuji.jpg" alt="Sonu">
+                    </div>
+                    <div class="member-name">श्री सोनू जी सारस्वत</div>
+                    <div class="member-role">नाम संकलन, व्यवस्था प्रभारी</div>
+                </div>
+
+                <!-- Row 5 -->
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./matadin.jpg" alt="Matadin">
+                    </div>
+                    <div class="member-name">श्री मातादीन जी सारस्वत</div>
+                    <div class="member-role">नाम संकलन, व्यवस्था प्रभारी</div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./pushpraj.jpeg" alt="Pushpraj">
+                    </div>
+                    <div class="member-name">श्री पुष्पराज जी सारस्वत</div>
+                    <div class="member-role">सांस्कृतिक सचिव</div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./manishji.jpeg" alt="Manish">
+                    </div>
+                    <div class="member-name">श्री मनीष जी सारस्वत</div>
+                    <div class="member-role">सहायक प्रोगेस मैनेजमेंट</div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./Bharat sarswat ji.jpeg" alt="Bharat">
+                    </div>
+                    <div class="member-name">श्री भरत जी सारस्वत</div>
+                    <div class="member-role">प्रोगेसिव मैनेजमेंट</div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./tulsidasji.jpeg" alt="Tulsidas">
+                    </div>
+                    <div class="member-name">श्री तुलसीदास जी सारस्वत</div>
+                    <div class="member-role">क्षेत्र अधिकारी</div>
+                </div>
+
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./gajendraji.jpeg" alt="Gajendra">
+                    </div>
+                    <div class="member-name">श्री गजेन्द्र जी सारस्वत</div>
+                    <div class="member-role">सहायक सांस्कृतिक सचिव</div>
+                </div>
+
+                <!-- Row 6 -->
+                <div class="member-card">
+                    <div class="member-photo">
+                        <img src="./raviji.jpeg" alt="Ravi">
+                    </div>
+                    <div class="member-name">श्री रवि जी सारस्वत</div>
+                    <div class="member-role">क्षेत्र अधिकारी</div>
+                </div>
+            </div>
+
+            <!-- New Year Greeting -->
+            <div class="new-year-greeting" style="margin-top: 30px;">
+                <div class="greeting-title">नववर्ष 2026 का स्वागत</div>
+                <div class="greeting-text">
+                    नववर्ष 2026 आपके और आपके परिवार के जीवन में नई ऊर्जा, नए उत्साह और असीम आनंद लेकर आए।
+                    हमारा संगठन हमेशा समाज की प्रगति और सदस्यों के कल्याण के लिए समर्पित रहेगा।
+                </div>
+                <div class="new-year-number">🎉 2026 🎉</div>
+                <div class="greeting-text">
+                    सभी समाज बंधुओं के सहयोग और आशीर्वाद से हमारा संगठन निरंतर प्रगति के पथ पर अग्रसर है।
+                    नववर्ष में आप सभी का स्वास्थ्य, सुख और समृद्धि हमारी शुभकामनाएँ।
+                </div>
+            </div>
+
+            <div class="page-number">पृष्ठ 2</div>
+        </div>
+    </div>
+</body>
+
+</html>
